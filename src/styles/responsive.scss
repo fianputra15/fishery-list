@@ -1,0 +1,15 @@
+@media (max-width: 600px) {
+    .navbar{
+        display: block;
+        text-align: center;
+        .title{
+            display: block;
+            text-align: center;
+        }
+        .menu {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+        }
+    }
+}
