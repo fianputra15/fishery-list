@@ -57,6 +57,7 @@ header {
         text-align: left;
         font-size: 12px;
         color: #9ca2bd;
+
         button {
             border: none;
             background: transparent;
@@ -64,14 +65,16 @@ header {
             font-size: 10px;
         }
 
-        div{
+        div {
             display: flex;
             justify-items: center;
-            button{
+
+            button {
                 margin-top: auto;
                 margin-bottom: auto;
             }
-            span{
+
+            span {
                 margin-top: auto;
                 margin-bottom: auto;
             }
@@ -196,7 +199,8 @@ header {
 
         button {
             background: #0b4bcb;
-            padding: 10px;
+            padding: 4px;
+
             color: white;
             width: 40px;
             cursor: pointer;
@@ -207,6 +211,10 @@ header {
 
             &:hover {
                 filter: brightness(70%)
+            }
+
+            span {
+                font-size: 20px;
             }
         }
     }

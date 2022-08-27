@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import Container from '../components/common/Container';
-import Table from '../components/common/Table';
+import Table from '../components/common/Table/Table';
 import store from '../services/steinClient';
 
 const Home: React.FC = () => {

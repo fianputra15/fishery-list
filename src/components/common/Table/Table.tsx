@@ -1,10 +1,12 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, { Key, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTable, usePagination, useSortBy, useFilters } from 'react-table';
 import { isEmpty } from 'lodash';
 import { matchSorter } from 'match-sorter';
 import moment from 'moment';
+import SortButton from './SortButton';
+import Pagination from './Pagination';
 
 function fuzzyTextFilterFn(rows, id, filterValue) {
   return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
@@ -32,6 +34,10 @@ export default function Table(props: any) {
 
   const data = React.useMemo(() => tableData ?? [], [tableData]);
   const columns = React.useMemo(() => tableHeader ?? [], [tableHeader]);
+  const [stateSortIcon, setStateSortIcon]: any = useState({
+    heading: '',
+    type: '',
+  });
 
   const filterTypes = React.useMemo(
     () => ({
@@ -88,21 +94,6 @@ export default function Table(props: any) {
 
   return (
     <>
-      {/* <div className="filter-wrapper">
-        <div className="sort-box">
-          <div>
-            <select>
-              <option value="">Filter By</option>
-            </select>
-          </div>
-          <div>
-            <select placeholder="Sort By">
-              <option value="">Filter By</option>
-            </select>
-          </div>
-        </div>
-      </div> */}
-
       <div style={{ overflowX: 'auto' }}>
         <table {...getTableProps()} className="table-list" cellPadding={10}>
           <thead>
@@ -114,27 +105,15 @@ export default function Table(props: any) {
                       width="20"
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
-                      <div>
-                        <button type="button">
-                          {' '}
-                          <span className="material-icons">filter_list</span>
-                        </button>
-                        <span> {column.render('Header')}</span>
-                      </div>
-
-                      {/* Render the columns filter UI */}
+                      <SortButton
+                        setStateSortIcon={setStateSortIcon}
+                        stateSortIcon={stateSortIcon}
+                        title={column.render('Header')}
+                      />
                       <div>
                         {column.canFilter ? column.render('Filter') : null}
                       </div>
                       <br />
-                      {/* <input
-                        value={filterValue || ''}
-                        onChange={(e) => {
-                          setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
-                        }}
-                        type="text"
-                        placeholder={`Search by ${column?.Header}`}
-                      /> */}
                     </th>
                   );
                 })}
@@ -190,57 +169,18 @@ export default function Table(props: any) {
           )}
         </table>
       </div>
-      {!loading && (
-        <div className="pagination">
-          <div className="pagination-group-button">
-            <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-              {'<<'}
-            </button>{' '}
-            <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-              {'<'}
-            </button>{' '}
-            <button onClick={() => nextPage()} disabled={!canNextPage}>
-              {'>'}
-            </button>{' '}
-            <button
-              onClick={() => gotoPage(pageCount - 1)}
-              disabled={!canNextPage}
-            >
-              {'>>'}
-            </button>{' '}
-          </div>
-          <div className="pagination-info">
-            <span>
-              Page{' '}
-              <strong>
-                {pageIndex + 1} of {pageOptions.length}
-              </strong>{' '}
-            </span>
-            <span>| Go to page:</span>
-            <input
-              type="number"
-              defaultValue={pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                gotoPage(page);
-              }}
-              style={{ width: '100px' }}
-            />
-            <select
-              value={pageSize}
-              onChange={(e) => {
-                setPageSize(Number(e.target.value));
-              }}
-            >
-              {[10, 20, 30, 40, 50].map((pageSize) => (
-                <option key={pageSize} value={pageSize}>
-                  Show {pageSize}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-      )}
+      {!loading && <Pagination
+            gotoPage={gotoPage}
+            pageCount={pageCount}
+            canNextPage={canNextPage}
+            pageSize={pageSize}
+            canPreviousPage={canPreviousPage}
+            setPageSize={setPageSize}
+            pageIndex={pageIndex}
+            pageOptions={pageOptions}
+            previousPage={previousPage}
+            nextPage={nextPage}
+      />}
     </>
   );
 }
