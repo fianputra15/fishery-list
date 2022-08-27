@@ -1,4 +1,5 @@
 import React from 'react';
+import PaginationButton from './PaginationButton';
 
 const Pagination: React.FC<any> = (props) => {
   const {
@@ -16,14 +17,33 @@ const Pagination: React.FC<any> = (props) => {
   return (
     <div className="pagination">
       <div className="pagination-group-button">
-        <button
+        <PaginationButton
+          additionalValue={0}
+          isClick={gotoPage}
+          status={!canPreviousPage}
+        >
+          <span className="material-icons">keyboard_double_arrow_left</span>
+        </PaginationButton>
+        <PaginationButton isClick={previousPage} status={!canPreviousPage}>
+          <span className="material-icons">keyboard_arrow_left</span>
+        </PaginationButton>
+        <PaginationButton isClick={nextPage} status={!canNextPage}>
+          <span className="material-icons">keyboard_arrow_right</span>
+        </PaginationButton>
+        <PaginationButton
+          additionalValue={pageCount - 1}
+          isClick={gotoPage}
+          status={!canNextPage}
+        >
+          <span className="material-icons">keyboard_double_arrow_right</span>
+        </PaginationButton>
+        {/* <button
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
           style={{
             opacity: !canPreviousPage ? '.5' : '100',
           }}
         >
-          {/* {'<<'} */}
           <span className="material-icons">keyboard_double_arrow_left</span>
         </button>{' '}
         <button
@@ -52,7 +72,7 @@ const Pagination: React.FC<any> = (props) => {
           disabled={!canNextPage}
         >
           <span className="material-icons">keyboard_double_arrow_right</span>
-        </button>{' '}
+        </button>{' '} */}
       </div>
       <div className="pagination-info">
         <span>

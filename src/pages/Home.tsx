@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import Container from '../components/common/Container';
 import Table from '../components/common/Table/Table';
 import store from '../services/steinClient';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const [stateListFishery, setStateListFishery] = useState([]);
@@ -54,22 +54,26 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <Container>
-      <div className="main">
-        <div className="content-wrapper">
-          <div className="content-header">
-            <h2>List Fishery</h2>
-          </div>
-          <div>
-            <Table
-              loading={isLoadingList}
-              tableData={stateListFishery}
-              tableHeader={tableHeader}
-            />
-          </div>
+    <div className="main">
+      <div className="content-wrapper">
+        <div className="content-header">
+          <h2>List Fishery</h2>
+          <Link className="menu" to="/collection">
+            <div>
+              <span className="material-icons">add</span>{' '}
+              <span>Add New Fishery</span>
+            </div>
+          </Link>
+        </div>
+        <div>
+          <Table
+            loading={isLoadingList}
+            tableData={stateListFishery}
+            tableHeader={tableHeader}
+          />
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 

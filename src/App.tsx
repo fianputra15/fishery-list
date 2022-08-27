@@ -1,19 +1,10 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import './App.css';
 import 'material-icons';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import Home from './pages/Home';
+import Container from './container/Container';
 
 function App() {
-  return (
-    <Router>
-      <Switch>
-        <Suspense>
-          <Route exact path="/" render={() => <Home />}></Route>
-        </Suspense>
-      </Switch>
-    </Router>
-  );
+  return <Container />;
 }
 
 export default App;
