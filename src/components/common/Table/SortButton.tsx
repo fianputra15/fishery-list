@@ -1,8 +1,7 @@
 import React from 'react';
 
 const SortButton: React.FC<any> = (props) => {
-  const { title, setStateSortIcon, stateSortIcon } = props;
-  //   const [clickedSort, setClickedSort]: any = useState(0);
+  const { title, setStateSortIcon, stateSortIcon, column } = props;
   const handleChangeSort = () => {
     // setClickedSort((num: number) => num + 1);
     if (stateSortIcon?.heading === title && stateSortIcon?.type === 'asc') {
@@ -25,9 +24,8 @@ const SortButton: React.FC<any> = (props) => {
       });
     }
   };
-
   return (
-    <div>
+    <div {...column.getHeaderProps(column.getSortByToggleProps())}>
       <button type="button" onClick={() => handleChangeSort()}>
         {' '}
         {stateSortIcon?.heading === title && stateSortIcon?.type === 'desc' && (

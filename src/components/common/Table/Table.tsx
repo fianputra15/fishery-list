@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTable, usePagination, useSortBy, useFilters } from 'react-table';
 import { isEmpty } from 'lodash';
 import { matchSorter } from 'match-sorter';
@@ -23,6 +23,7 @@ function DefaultColumnFilter({
     <input
       value={filterValue || ''}
       onChange={(e) => {
+        e.preventDefault();
         setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
       }}
       placeholder={`Search ${count} records...`}
@@ -92,6 +93,10 @@ export default function Table(props: any) {
     usePagination,
   );
 
+  useEffect(() => {
+    console.log(stateSortIcon);
+  }, [stateSortIcon]);
+
   return (
     <>
       <div style={{ overflowX: 'auto' }}>
@@ -101,15 +106,16 @@ export default function Table(props: any) {
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column: any) => {
                   return (
-                    <th
-                      width="20"
-                      {...column.getHeaderProps(column.getSortByToggleProps())}
-                    >
-                      <SortButton
-                        setStateSortIcon={setStateSortIcon}
-                        stateSortIcon={stateSortIcon}
-                        title={column.render('Header')}
-                      />
+                    <th width="20">
+                      <div>
+                        <SortButton
+                          column={column}
+                          setStateSortIcon={setStateSortIcon}
+                          stateSortIcon={stateSortIcon}
+                          title={column.render('Header')}
+                        />
+                      </div>
+
                       <div>
                         {column.canFilter ? column.render('Filter') : null}
                       </div>
@@ -169,18 +175,20 @@ export default function Table(props: any) {
           )}
         </table>
       </div>
-      {!loading && <Pagination
-            gotoPage={gotoPage}
-            pageCount={pageCount}
-            canNextPage={canNextPage}
-            pageSize={pageSize}
-            canPreviousPage={canPreviousPage}
-            setPageSize={setPageSize}
-            pageIndex={pageIndex}
-            pageOptions={pageOptions}
-            previousPage={previousPage}
-            nextPage={nextPage}
-      />}
+      {!loading && (
+        <Pagination
+          gotoPage={gotoPage}
+          pageCount={pageCount}
+          canNextPage={canNextPage}
+          pageSize={pageSize}
+          canPreviousPage={canPreviousPage}
+          setPageSize={setPageSize}
+          pageIndex={pageIndex}
+          pageOptions={pageOptions}
+          previousPage={previousPage}
+          nextPage={nextPage}
+        />
+      )}
     </>
   );
 }
