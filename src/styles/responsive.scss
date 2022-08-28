@@ -1,15 +1,25 @@
-@media (max-width: 600px) {
-    .navbar{
-        display: block;
-        text-align: center;
-        .title{
+@media only screen and (max-width: 600px) {
+    header {
+
+        .navbar {
             display: block;
             text-align: center;
+            padding: 0;
+
+            .title {
+                display: block;
+                text-align: center;
+            }
+
+            .menu {
+                text-align: center;
+                display: block;
+                margin-top: 20px;
+            }
         }
-        .menu {
-            text-align: center;
-            display: block;
-            margin-top: 20px;
-        }
+    }
+
+    .main {
+        padding: 4%;
     }
 }

@@ -37,42 +37,6 @@ const Pagination: React.FC<any> = (props) => {
         >
           <span className="material-icons">keyboard_double_arrow_right</span>
         </PaginationButton>
-        {/* <button
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-          style={{
-            opacity: !canPreviousPage ? '.5' : '100',
-          }}
-        >
-          <span className="material-icons">keyboard_double_arrow_left</span>
-        </button>{' '}
-        <button
-          style={{
-            opacity: !canPreviousPage ? '.5' : '100',
-          }}
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-        >
-          <span className="material-icons">keyboard_arrow_left</span>
-        </button>{' '}
-        <button
-          style={{
-            opacity: !canNextPage ? '.5' : '100',
-          }}
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-        >
-          <span className="material-icons">keyboard_arrow_right</span>
-        </button>{' '}
-        <button
-          style={{
-            opacity: !canNextPage ? '.5' : '100',
-          }}
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-        >
-          <span className="material-icons">keyboard_double_arrow_right</span>
-        </button>{' '} */}
       </div>
       <div className="pagination-info">
         <span>

@@ -29,6 +29,9 @@ header {
             text-decoration: none;
             font-weight: 800;
             color: $white;
+            &:hover{
+                text-decoration: underline;
+            }
         }
 
         .menu {
@@ -44,16 +47,15 @@ header {
 }
 
 .main {
-    margin-bottom: 40%;
+    margin-bottom: 30%;
     padding-right: 15%;
     padding-left: 15%;
+    margin-top: 2%;
 }
 
 
 .table-list {
     width: 100%;
-
-
 
     th {
         text-align: left;
@@ -136,7 +138,11 @@ header {
             text-decoration: none;
             font-weight: bold;
             color: $white;
+            box-shadow: $shadow;
 
+            &:hover {
+                filter: brightness(70%);
+            }
             div {
                 display: flex;
                 margin-left: auto;
@@ -146,8 +152,6 @@ header {
             }
 
         }
-
-
     }
 
 }
@@ -297,8 +301,10 @@ footer {
     padding: 10px;
     background: $primary;
     color: $white;
+
     div {
         display: flex;
+
         p {
             font-size: 15px;
             width: 100%;
