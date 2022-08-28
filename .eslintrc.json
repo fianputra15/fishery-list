@@ -19,7 +19,8 @@
       "@typescript-eslint/naming-convention": 0,
       "@typescript-eslint/no-floating-promises":0,
       "no-useless-escape": 0,
-      "react/jsx-key": 0
+      "react/jsx-key": 0,
+      "@typescript-eslint/restrict-plus-operands": 0
     }
   }
   

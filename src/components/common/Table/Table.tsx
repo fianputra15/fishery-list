@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useTable, usePagination, useSortBy, useFilters } from 'react-table';
 import { isEmpty } from 'lodash';
 import { matchSorter } from 'match-sorter';
+import { formatRupiah } from '../../../libs/formatingCurrency';
 import moment from 'moment';
 import SortButton from './SortButton';
 import Pagination from './Pagination';
@@ -147,6 +148,15 @@ export default function Table(props: any) {
                               : moment(cell.value).format(
                                   'DD/MM/YYYY hh:mm:ss',
                                 )}
+                          </td>
+                        );
+                      }
+                      if (cell.column.id === 'price') {
+                        return (
+                          <td {...cell.getCellProps()}>
+                            {isEmpty(cell?.value)
+                              ? '-'
+                              : formatRupiah(cell.value, 'Rp.')}
                           </td>
                         );
                       }

@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import Home from '../pages/Home';
+import AddFishery from '../pages/AddFishery';
 import { Route, Switch, Link } from 'react-router-dom';
 
 const Container: React.FC = () => {
@@ -13,9 +14,13 @@ const Container: React.FC = () => {
         </div>
       </header>
       <main>
-        {' '}
         <Switch>
           <Suspense>
+            <Route
+              exact
+              path="/add-fishery"
+              render={() => <AddFishery />}
+            ></Route>
             <Route exact path="/" render={() => <Home />}></Route>
           </Suspense>
         </Switch>

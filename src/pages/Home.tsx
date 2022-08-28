@@ -48,6 +48,10 @@ const Home: React.FC = () => {
       accessor: 'price',
     },
     {
+      Header: 'Ukuran',
+      accessor: 'size',
+    },
+    {
       Header: 'Tanggal',
       accessor: 'tgl_parsed',
     },
@@ -58,7 +62,7 @@ const Home: React.FC = () => {
       <div className="content-wrapper">
         <div className="content-header">
           <h2>List Fishery</h2>
-          <Link className="menu" to="/collection">
+          <Link className="menu" to="/add-fishery">
             <div>
               <span className="material-icons">add</span>{' '}
               <span>Add New Fishery</span>
