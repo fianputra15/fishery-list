@@ -126,7 +126,9 @@ const AddFishery: React.FC = () => {
       <div className="content-wrapper">
         <h2>New Fishery</h2>
         {stateLoadingList && isEmpty(stateListArea) && stateLoadingSize && (
-          <p>Please Wait...</p>
+          <div className="wrapper-loader">
+            <div className="loader"></div>
+          </div>
         )}
         {!stateLoadingList && !isEmpty(stateListArea) && !stateLoadingSize && (
           <JsonToForm model={stateForm} onSubmit={handleAddNewFishery} />

@@ -1,11 +1,12 @@
 @import "color";
 
+
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
         "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;
-
+    background: $light !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -29,7 +30,8 @@ header {
             text-decoration: none;
             font-weight: 800;
             color: $white;
-            &:hover{
+
+            &:hover {
                 text-decoration: underline;
             }
         }
@@ -111,9 +113,10 @@ header {
 }
 
 .content-wrapper {
-    background:white;
-    padding: 10px;
+    background: white;
+    padding: 4%;
     margin-top: 10px;
+    box-shadow: $shadow;
     border-radius: 10px;
 
     .content-header {
@@ -142,6 +145,7 @@ header {
             &:hover {
                 filter: brightness(70%);
             }
+
             div {
                 display: flex;
                 margin-left: auto;
@@ -261,6 +265,44 @@ header {
         }
     }
 
+}
+
+.wrapper-loader {
+    display: flex;
+}
+
+.loader {
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #3498db;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 footer {

@@ -178,7 +178,9 @@ export default function Table(props: any) {
                   colSpan={tableHeader.length}
                   style={{ height: '100px', textAlign: 'center' }}
                 >
-                  Please Wait....
+                  <div className='wrapper-loader'>
+                    <div class="loader"></div>
+                  </div>
                 </td>
               </tr>
             </tbody>
