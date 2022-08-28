@@ -8,7 +8,6 @@ const Home: React.FC = () => {
   const [stateListFishery, setStateListFishery] = useState([]);
   const [isLoadingList, setIsLoadingList] = useState(false);
   useEffect(() => {
-    console.log('hei');
     setIsLoadingList(true);
     store.read('list').then((data: any) => {
       setStateListFishery(data);

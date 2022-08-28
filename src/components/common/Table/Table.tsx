@@ -94,10 +94,6 @@ export default function Table(props: any) {
     usePagination,
   );
 
-  useEffect(() => {
-    console.log(stateSortIcon);
-  }, [stateSortIcon]);
-
   return (
     <>
       <div style={{ overflowX: 'auto' }}>
