@@ -171,20 +171,6 @@ export default function Table(props: any) {
               })}
             </tbody>
           )}
-          {loading && (
-            <tbody>
-              <tr>
-                <td
-                  colSpan={tableHeader.length}
-                  style={{ height: '100px', textAlign: 'center' }}
-                >
-                  <div className='wrapper-loader'>
-                    <div class="loader"></div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          )}
         </table>
       </div>
       {!loading && (

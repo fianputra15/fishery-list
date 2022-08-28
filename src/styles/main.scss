@@ -49,9 +49,9 @@ header {
 }
 
 .main {
-    margin-bottom: 50%;
     padding-right: 15%;
     padding-left: 15%;
+    margin-bottom: 50%;
 }
 
 
@@ -309,10 +309,8 @@ footer {
     padding: 10px;
     background: $primary;
     color: $white;
-
     div {
         display: flex;
-
         p {
             font-size: 15px;
             width: 100%;

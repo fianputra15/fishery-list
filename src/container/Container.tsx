@@ -2,10 +2,15 @@ import React, { Suspense } from 'react';
 import Home from '../pages/Home';
 import AddFishery from '../pages/AddFishery';
 import { Route, Switch, Link } from 'react-router-dom';
+// import { Helmet } from 'react-helmet';
 
 const Container: React.FC = () => {
   return (
     <>
+      {/* <Helmet>
+        <title>Fishery List</title>
+        <meta charSet="utf-8" />
+      </Helmet> */}
       <header>
         <div className="navbar">
           <Link className="title" to="/">

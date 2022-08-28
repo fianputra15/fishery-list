@@ -62,6 +62,7 @@ const Home: React.FC = () => {
       <div className="content-wrapper">
         <div className="content-header">
           <h2>List Fishery</h2>
+
           <Link className="menu" to="/add-fishery">
             <div>
               <span className="material-icons">add</span>{' '}
@@ -69,6 +70,11 @@ const Home: React.FC = () => {
             </div>
           </Link>
         </div>
+        {isLoadingList && (
+          <div className="wrapper-loader">
+            <div className="loader"></div>
+          </div>
+        )}
         <div>
           <Table
             loading={isLoadingList}
