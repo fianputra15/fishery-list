@@ -32,7 +32,7 @@ function DefaultColumnFilter({
   );
 }
 export default function Table(props: any) {
-  const { tableData, tableHeader, loading } = props;
+  const { tableData, tableHeader, loading, handleDeleteFishery } = props;
 
   const data = React.useMemo(() => tableData ?? [], [tableData]);
   const columns = React.useMemo(() => tableHeader ?? [], [tableHeader]);
@@ -102,6 +102,17 @@ export default function Table(props: any) {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column: any) => {
+                  if (column.id === 'action') {
+                    return (
+                      <th width="20">
+                        <div>
+                          <div {...column.getHeaderProps()}>
+                            <span> {column.render('Header')}</span>
+                          </div>
+                        </div>
+                      </th>
+                    );
+                  }
                   return (
                     <th width="20">
                       <div>
@@ -133,7 +144,7 @@ export default function Table(props: any) {
                       background: i % 2 == 0 ? '#f7f8fc' : 'white',
                     }}
                     {...row.getRowProps()}
-                    className="table-list-data"
+                    className="table-list-data p-4"
                   >
                     {row.cells.map((cell) => {
                       if (cell.column.id === 'tgl_parsed') {
@@ -153,6 +164,19 @@ export default function Table(props: any) {
                             {isEmpty(cell?.value)
                               ? '-'
                               : formatRupiah(cell.value, 'Rp.')}
+                          </td>
+                        );
+                      }
+                      if (cell.column.id === 'action') {
+                        return (
+                          <td align="center">
+                            <button
+                              onClick={() => handleDeleteFishery(row.original)}
+                              className="btn btn-danger btn-sm"
+                              type="button"
+                            >
+                              <span className="material-icons">delete</span>
+                            </button>
                           </td>
                         );
                       }

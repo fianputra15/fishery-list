@@ -3,30 +3,54 @@ import React, { useEffect, useState } from 'react';
 import Table from '../components/common/Table/Table';
 import store from '../services/steinClient';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Home: React.FC = () => {
   const [stateListFishery, setStateListFishery] = useState([]);
   const [isLoadingList, setIsLoadingList] = useState(false);
-  useEffect(() => {
+  const handleGetList = () => {
     setIsLoadingList(true);
     store.read('list').then((data: any) => {
       setStateListFishery(data);
       setIsLoadingList(false);
     });
+  };
+  useEffect(() => {
+    handleGetList();
   }, []);
 
-  // const handleAddNewFishery = () => {
-  //   const payload = {
-  //     uuid: null,
-  //     komoditas: null,
-  //     area_provinsi: null,
-  //     area_kota: null,
-  //     size: null,
-  //     price: null,
-  //     tgl_parsed: null,
-  //     timestamp: null,
-  //   };
-  // };
+  const handleDeleteFishery = (params) => {
+    Swal.fire({
+      title: `Apakah anda yakin ingin menghapus fishery ${params?.komoditas}?`,
+      text: 'Sekali fishery terhapus, data tidak akan bisa dikembalikan',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Please wait...',
+          didOpen: () => {
+            Swal.showLoading();
+          },
+          allowOutsideClick: false,
+        });
+        store
+          .delete('list', {
+            search: { uuid: params?.uuid },
+          })
+          .then((res) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Berhasil',
+              text: `Berhasil menghapus fishery ${params?.komoditas}`,
+            });
+            handleGetList();
+          });
+      }
+    });
+  };
 
   const tableHeader = [
     {
@@ -54,6 +78,10 @@ const Home: React.FC = () => {
       Header: 'Tanggal',
       accessor: 'tgl_parsed',
     },
+    {
+      Header: 'Action',
+      accessor: 'action',
+    },
   ];
 
   return (
@@ -79,6 +107,7 @@ const Home: React.FC = () => {
             loading={isLoadingList}
             tableData={stateListFishery}
             tableHeader={tableHeader}
+            handleDeleteFishery={handleDeleteFishery}
           />
         </div>
       </div>
