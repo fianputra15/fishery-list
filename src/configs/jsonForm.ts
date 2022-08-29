@@ -7,7 +7,6 @@ export default {
   Provinsi: {
     type: 'select',
     required: true,
-
     options: [
       // use static json arry to get options
       {

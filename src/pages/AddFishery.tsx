@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import JsonToForm from 'json-reactform';
 import jsonForm from '../configs/jsonForm';
-
 import Swal from 'sweetalert2';
 import { isEmpty, upperCase } from 'lodash';
 import store from '../services/steinClient';
@@ -16,6 +15,7 @@ const AddFishery: React.FC = () => {
   const [stateForm, setStateForm] = useState(null);
   const [stateLoadingList, setStateLoadingList] = useState(false);
   const [stateLoadingSize, setStateLoadingSize] = useState(false);
+  // const [selectedProvinsi, setSelectedProvinsi] = useState(false);
   useEffect(() => {
     setStateLoadingList(true);
     store.read('option_area').then((data: any) => {
@@ -31,6 +31,35 @@ const AddFishery: React.FC = () => {
       setStateListSize(data);
     });
   }, []);
+
+  // useEffect(() => {
+  //   console.log(stateForm);
+  // }, [stateForm]);
+
+  // useEffect(() => {
+  //   if (isEmpty(selectedProvinsi)) return;
+
+  //   async function handleChangeListCity() {
+  //     await setStateLoadingList(true);
+  //  setStateForm({
+  //   ...stateForm,
+  //   Kota: {
+  //     type: 'select',
+  //     required: true,
+  //     options: stateListArea
+  //       ?.filter(
+  //         (val) => val?.province === selectedProvinsi?.Provinsi?.value,
+  //       )
+  //       ?.map((val) => ({
+  //         label: val?.city,
+  //         value: val?.city,
+  //       })),
+  //   },
+  // });
+  //     setStateLoadingList(false);
+  //   }
+  //   handleChangeListCity();
+  // }, [selectedProvinsi]);
 
   useEffect(() => {
     if (!isEmpty(stateListArea)) {
@@ -74,10 +103,6 @@ const AddFishery: React.FC = () => {
     }
   }, [stateListSize, stateLoadingList]);
 
-  useEffect(() => {
-    console.log(stateForm);
-  }, [stateForm]);
-
   const handleAddNewFishery = (params) => {
     Swal.fire({
       title: 'Please wait...',
@@ -105,7 +130,7 @@ const AddFishery: React.FC = () => {
             icon: 'success',
             title: 'Berhasil',
             didClose: () => {
-              history.push('/list');
+              history.push('/');
             },
             text: 'Berhasil menambahkan data baru',
           });
